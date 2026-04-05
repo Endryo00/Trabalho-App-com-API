@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "Filter Photo Pro Max Ultra Mega Blaster",
+=======
+  "name": "meuappfiltro",
+>>>>>>> ab0138c96779c0c86c3588eb8cc058093525e18c
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -12,7 +16,10 @@
     "expo": "~54.0.33",
     "expo-file-system": "~19.0.21",
     "expo-image-picker": "~17.0.10",
+<<<<<<< HEAD
     "expo-linear-gradient": "~15.0.8",
+=======
+>>>>>>> ab0138c96779c0c86c3588eb8cc058093525e18c
     "expo-media-library": "~18.2.1",
     "expo-sharing": "~14.0.8",
     "expo-status-bar": "~3.0.9",

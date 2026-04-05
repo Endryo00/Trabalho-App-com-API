@@ -14,6 +14,7 @@ import {
 import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system/legacy';
 import * as Sharing from 'expo-sharing';
+<<<<<<< HEAD
 import { LinearGradient } from 'expo-linear-gradient';
 
 // --- CONSTANTES MOVIDAS PARA FORA (OTIMIZAÇÃO DE MEMÓRIA) ---
@@ -44,6 +45,8 @@ const CROPS = [
   { label: 'Rosto', value: 'c_thumb,g_face,w_400,h_400' },
   { label: 'Redondo', value: 'r_max,c_crop,g_center' },
 ];
+=======
+>>>>>>> ab0138c96779c0c86c3588eb8cc058093525e18c
 
 export default function App() {
   const [loading, setLoading] = useState(false);
@@ -52,12 +55,16 @@ export default function App() {
   
   // --- ESTADOS DE TRANSFORMAÇÃO ---
   const [filterType, setFilterType] = useState('e_sepia'); 
+<<<<<<< HEAD
   const [adjustment, setAdjustment] = useState('');
+=======
+>>>>>>> ab0138c96779c0c86c3588eb8cc058093525e18c
   const [rotation, setRotation] = useState(0); 
   const [isFlippedH, setIsFlippedH] = useState(false);
   const [isFlippedV, setIsFlippedV] = useState(false);
   const [cropType, setCropType] = useState('c_limit'); 
 
+<<<<<<< HEAD
   // --- OTIMIZAÇÃO: Função única para resetar edições ---
   const resetEdits = () => {
     setRotation(0);
@@ -67,6 +74,25 @@ export default function App() {
     setAdjustment('');
     setCropType('c_limit');
   };
+=======
+  // --- CONFIGURAÇÕES DO SEU CLOUDINARY ---
+  const CLOUD_NAME = "dpcngtnv6"; 
+  const UPLOAD_PRESET = "ml_default";
+
+  const filters = [
+    { label: 'Sépia', value: 'e_sepia' },
+    { label: 'P&B', value: 'e_grayscale' },
+    { label: 'Cartoon', value: 'e_cartoonify' },
+    { label: 'Vibrante', value: 'e_improve' },
+    { label: 'Nenhum', value: '' },
+  ];
+
+  const crops = [
+    { label: 'Normal', value: 'c_limit' },
+    { label: 'Rosto (400x400)', value: 'c_thumb,g_face,w_400,h_400' },
+    { label: 'Corte Central', value: 'c_crop,w_0.8,h_0.8,g_center' },
+  ];
+>>>>>>> ab0138c96779c0c86c3588eb8cc058093525e18c
 
   const selectImage = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -84,7 +110,16 @@ export default function App() {
     if (!result.canceled) {
       setLocalPhoto(result.assets[0]);
       setPhotoData(null);
+<<<<<<< HEAD
       resetEdits();
+=======
+      // Resetar opções ao escolher nova foto
+      setRotation(0);
+      setIsFlippedH(false);
+      setIsFlippedV(false);
+      setFilterType('e_sepia');
+      setCropType('c_limit');
+>>>>>>> ab0138c96779c0c86c3588eb8cc058093525e18c
     }
   };
 
@@ -121,7 +156,14 @@ export default function App() {
     setLoading(true);
     try {
       const finalUrl = getFinalTransformedUrl(photoData.public_id);
+<<<<<<< HEAD
       const fileUri = FileSystem.cacheDirectory + `foto_editada_${Date.now()}.jpg`;
+=======
+      // Criamos um caminho temporário para o arquivo
+      const fileUri = FileSystem.cacheDirectory + `foto_editada_${Date.now()}.jpg`;
+
+      // Faz o download usando a API legacy
+>>>>>>> ab0138c96779c0c86c3588eb8cc058093525e18c
       const downloadResult = await FileSystem.downloadAsync(finalUrl, fileUri);
 
       if (downloadResult.status === 200) {
@@ -140,18 +182,25 @@ export default function App() {
     const transforms = [];
     if (cropType) transforms.push(cropType);
     if (filterType) transforms.push(filterType);
+<<<<<<< HEAD
     if (adjustment) transforms.push(adjustment);
+=======
+>>>>>>> ab0138c96779c0c86c3588eb8cc058093525e18c
     if (rotation !== 0) transforms.push(`a_${rotation}`);
     if (isFlippedH) transforms.push('a_hflip');
     if (isFlippedV) transforms.push('a_vflip');
 
+<<<<<<< HEAD
     transforms.push('f_auto', 'q_auto'); // Otimização via Cloudinary
 
+=======
+>>>>>>> ab0138c96779c0c86c3588eb8cc058093525e18c
     const transformString = transforms.filter(t => t !== '').join(',');
     return `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${transformString}/${publicId}.jpg`;
   };
 
   return (
+<<<<<<< HEAD
     <LinearGradient
       // Fundo topo mais claro (#9E9898) indo para o fundo escuro (#292929)
       colors={['#9E9898', '#292929']}
@@ -419,4 +468,101 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: NEON_GREEN
   },
+=======
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.title}>Filtro API Pro ✨</Text>
+
+      {/* TELA INICIAL */}
+      {!localPhoto && !photoData && (
+        <TouchableOpacity style={styles.button} onPress={selectImage}>
+          <Text style={styles.buttonText}>Selecionar Foto</Text>
+        </TouchableOpacity>
+      )}
+
+      {/* MENU DE OPÇÕES (PÓS SELEÇÃO) */}
+      {localPhoto && !loading && (
+        <View style={styles.menuContainer}>
+          <Text style={styles.label}>1. Efeito:</Text>
+          <View style={styles.row}>
+            {filters.map(f => (
+              <TouchableOpacity 
+                key={f.label} 
+                style={[styles.miniButton, filterType === f.value && styles.active]} 
+                onPress={() => setFilterType(f.value)}
+              >
+                <Text style={[styles.miniText, filterType === f.value && {color: '#fff'}]}>{f.label}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+
+          <Text style={styles.label}>2. Rotação e Flip:</Text>
+          <View style={styles.row}>
+            <TouchableOpacity style={styles.miniButton} onPress={() => setRotation((rotation + 90) % 360)}>
+              <Text style={styles.miniText}>Girar {rotation}°</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.miniButton, isFlippedH && styles.active]} onPress={() => setIsFlippedH(!isFlippedH)}>
+              <Text style={[styles.miniText, isFlippedH && {color: '#fff'}]}>Flip H</Text>
+            </TouchableOpacity>
+          </View>
+
+          <Text style={styles.label}>3. Estilo de Corte:</Text>
+          <View style={styles.row}>
+            {crops.map(c => (
+              <TouchableOpacity 
+                key={c.label} 
+                style={[styles.miniButton, cropType === c.value && styles.active]} 
+                onPress={() => setCropType(c.value)}
+              >
+                <Text style={[styles.miniText, cropType === c.value && {color: '#fff'}]}>{c.label}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+
+          <Image source={{ uri: localPhoto.uri }} style={styles.preview} />
+
+          <TouchableOpacity style={styles.uploadButton} onPress={uploadOriginal}>
+            <Text style={styles.buttonText}>Gerar Resultado Final</Text>
+          </TouchableOpacity>
+          <Button title="Cancelar" color="red" onPress={() => setLocalPhoto(null)} />
+        </View>
+      )}
+
+      {loading && <ActivityIndicator size="large" color="#6200ee" style={{marginTop: 50}} />}
+
+      {/* RESULTADO FINAL */}
+      {photoData && !loading && (
+        <View style={styles.resultContainer}>
+          <Text style={styles.label}>Imagem Transformada via Cloudinary:</Text>
+          <Image 
+            source={{ uri: getFinalTransformedUrl(photoData.public_id) }} 
+            style={styles.resultImage} 
+          />
+          <TouchableOpacity style={styles.button} onPress={shareTransformedImage}>
+            <Text style={styles.buttonText}>Salvar ou Compartilhar</Text>
+          </TouchableOpacity>
+          <View style={{marginTop: 20}}>
+            <Button title="Nova Foto" color="#666" onPress={() => setPhotoData(null)} />
+          </View>
+        </View>
+      )}
+    </ScrollView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flexGrow: 1, alignItems: 'center', padding: 20, backgroundColor: '#f9f9f9' },
+  title: { fontSize: 26, fontWeight: 'bold', marginBottom: 30, marginTop: 40, color: '#333' },
+  button: { backgroundColor: '#6200ee', padding: 18, borderRadius: 12, width: '100%', alignItems: 'center' },
+  uploadButton: { backgroundColor: '#2ecc71', padding: 18, borderRadius: 12, width: '100%', alignItems: 'center', marginBottom: 10 },
+  buttonText: { color: '#fff', fontWeight: 'bold', fontSize: 16 },
+  menuContainer: { width: '100%' },
+  label: { fontSize: 16, fontWeight: 'bold', marginTop: 15, marginBottom: 8, color: '#555' },
+  row: { flexDirection: 'row', flexWrap: 'wrap', marginBottom: 10 },
+  miniButton: { padding: 10, borderWidth: 1, borderColor: '#6200ee', borderRadius: 8, marginRight: 8, marginBottom: 8 },
+  active: { backgroundColor: '#6200ee' },
+  miniText: { color: '#6200ee', fontSize: 13, fontWeight: '600' },
+  preview: { width: '100%', height: 250, borderRadius: 12, marginVertical: 15, backgroundColor: '#eee', resizeMode: 'contain' },
+  resultContainer: { width: '100%', alignItems: 'center' },
+  resultImage: { width: '100%', height: 400, borderRadius: 15, marginBottom: 20, backgroundColor: '#eee', resizeMode: 'contain' },
+>>>>>>> ab0138c96779c0c86c3588eb8cc058093525e18c
 });

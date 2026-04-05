@@ -1,5 +1,6 @@
 {
   "expo": {
+<<<<<<< HEAD
     "name": "Filter Photo Pro Max Ultra Mega Blaster",
     "slug": "Filter Photo Pro Max Ultra Mega Blaster",
     "version": "1.0.0",
@@ -9,6 +10,17 @@
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/icon.png",
+=======
+    "name": "MeuAppFiltro",
+    "slug": "MeuAppFiltro",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+>>>>>>> ab0138c96779c0c86c3588eb8cc058093525e18c
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,7 +29,11 @@
     },
     "android": {
       "adaptiveIcon": {
+<<<<<<< HEAD
         "foregroundImage": "./assets/icon.png",
+=======
+        "foregroundImage": "./assets/adaptive-icon.png",
+>>>>>>> ab0138c96779c0c86c3588eb8cc058093525e18c
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
@@ -28,7 +44,11 @@
   ]
     },
     "web": {
+<<<<<<< HEAD
       "favicon": "./assets/icon.png"
+=======
+      "favicon": "./assets/favicon.png"
+>>>>>>> ab0138c96779c0c86c3588eb8cc058093525e18c
     }
   }
 }
