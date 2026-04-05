@@ -1,8 +1,7 @@
 {
   "expo": {
-<<<<<<< HEAD
-    "name": "Filter Photo Pro Max Ultra Mega Blaster",
-    "slug": "Filter Photo Pro Max Ultra Mega Blaster",
+    "name": "Filter Photo Pro Max",
+    "slug": "Filter-Photo-Pro-Max",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -10,45 +9,26 @@
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/icon.png",
-=======
-    "name": "MeuAppFiltro",
-    "slug": "MeuAppFiltro",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "newArchEnabled": true,
-    "splash": {
-      "image": "./assets/splash-icon.png",
->>>>>>> ab0138c96779c0c86c3588eb8cc058093525e18c
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#292929"
     },
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-<<<<<<< HEAD
         "foregroundImage": "./assets/icon.png",
-=======
-        "foregroundImage": "./assets/adaptive-icon.png",
->>>>>>> ab0138c96779c0c86c3588eb8cc058093525e18c
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#292929"
       },
       "edgeToEdgeEnabled": true,
       "permissions": [
-    "READ_EXTERNAL_STORAGE",
-    "WRITE_EXTERNAL_STORAGE",
-    "MEDIA_LIBRARY"
-  ]
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "MEDIA_LIBRARY"
+      ]
     },
     "web": {
-<<<<<<< HEAD
       "favicon": "./assets/icon.png"
-=======
-      "favicon": "./assets/favicon.png"
->>>>>>> ab0138c96779c0c86c3588eb8cc058093525e18c
     }
   }
 }
